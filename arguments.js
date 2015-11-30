@@ -74,14 +74,15 @@ function curriedSum(numArgs) {
 // sumvar(5)(30)(20)(1);
 
 Function.prototype.curry = function (numArgs) {
+  "use strict";
   var args = [];
-  // var args = Array.prototype.slice.call(arguments, 1);
   var fn = this;
 
   var _curried = function(arg) {
+    /* eslint no-invalid-this: 0 */
     args.push(arg);
     if (args.length === numArgs) {
-      return fn.apply(null, args);
+      return fn.apply(this, args);
     } else {
       return _curried;
     }
