@@ -1,9 +1,8 @@
 Function.prototype.inherits = function(superclass) {
   var subclass = this;
 
-  function Surrogate() {}
+  function Surrogate() {};
   Surrogate.prototype = superclass.prototype;
-
   subclass.prototype = new Surrogate();
   subclass.prototype.constructor = subclass;
 };
