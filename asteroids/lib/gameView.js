@@ -10,9 +10,9 @@
   GameView.prototype.start = function (canvas) {
     var ctx = canvas.getContext('2d');
     var gameView = this;
-    
+
     setInterval(function() {
-      gameView.game.moveObjects();
+      gameView.game.step();
       gameView.game.draw(ctx);
     }, 20);
   };

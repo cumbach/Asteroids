@@ -6,10 +6,10 @@
   var Game = Asteroids.Game = function (width, height) {
     this.xDim = width,
     this.yDim = height,
-    this.addAsteroids()
+    this.addAsteroids();
   };
 
-  Game.NUM_ASTEROIDS = 5;
+  Game.NUM_ASTEROIDS = 10;
   Game.DIM_X = 500;
   Game.DIM_Y = 300;
 
@@ -45,6 +45,31 @@
     var y = Math.abs(pos[1] % this.yDim);
 
     return [x, y];
+  };
+
+  Game.prototype.checkCollisions = function () {
+    var that = this;
+
+    this.asteroids.forEach(function (asteroid1) {
+      that.asteroids.forEach(function (asteroid2) {
+        if (asteroid1 !== asteroid2) {
+          if (asteroid1.isCollidedWith(asteroid2)) {
+            console.log("COLLISION");
+            asteroid1.collideWith(asteroid2);
+          }
+        }
+      });
+    });
+  };
+
+  Game.prototype.step = function () {
+    this.moveObjects();
+    this.checkCollisions();
+  };
+
+  Game.prototype.remove = function (asteroid) {
+    var index = this.asteroids.indexOf(asteroid);
+    this.asteroids.splice(index, 1);
   };
 
 })();
