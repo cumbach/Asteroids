@@ -20,7 +20,7 @@
 
     for (var i = 0; i < Game.NUM_ASTEROIDS; i++) {
       pos = [Math.random() * this.xDim, Math.random() * this.yDim];
-      asteroid = new Asteroids.Asteroid({ pos: pos });
+      asteroid = new Asteroids.Asteroid({ pos: pos, game: this });
 
       this.asteroids.push(asteroid);
     }
@@ -38,6 +38,13 @@
     this.asteroids.forEach(function (asteroid) {
       asteroid.move();
     });
+  };
+
+  Game.prototype.wrap = function (pos) {
+    var x = Math.abs(pos[0] % this.xDim);
+    var y = Math.abs(pos[1] % this.yDim);
+
+    return [x, y];
   };
 
 })();
