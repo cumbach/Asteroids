@@ -3,14 +3,14 @@
     window.Asteroids = {};
   }
 
-  var movingObject = Asteroids.movingObject = function(attributes) {
-    this.pos = attributes[pos],
-    this.vel = attributes[vel],
-    this.radius = attributes[radius],
-    this.color = attributes[color]
+  var MovingObject = Asteroids.MovingObject = function(attributes) {
+    this.pos = attributes.pos,
+    this.vel = attributes.vel,
+    this.radius = attributes.radius,
+    this.color = attributes.color
   };
 
-  movingObject.prototype.draw = function (ctx) {
+  MovingObject.prototype.draw = function (ctx) {
     ctx.fillStyle = this.color;
     ctx.beginPath();
 
@@ -26,7 +26,7 @@
     ctx.fill();
   };
 
-  movingObject.prototype.move = function() {
+  MovingObject.prototype.move = function() {
     this.pos[0] += this.vel[0];
     this.pos[1] += this.vel[1];
   };
